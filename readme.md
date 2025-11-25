@@ -50,7 +50,7 @@ bun run dev
 ## Endpoints da API
 A API pode ser testada via Postman:
 
-**link** - [Collection Postman](https://www.postman.com/dan-3200/workspace/publico/collection/43029232-50d55b29-08ea-4293-8cb9-1a055262809c)
+**link** - [Collection Postman](https://www.postman.com/dan-3200/workspace/publico/documentation/43029232-50d55b29-08ea-4293-8cb9-1a055262809c)
 
 ## Licença
 Este projeto está licenciado sob a Licença MIT. Consulte o arquivo [LICENSE](./LICENSE) para mais detalhes.
