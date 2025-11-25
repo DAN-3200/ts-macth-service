@@ -1,4 +1,4 @@
-import type { Collection, MongoClient } from 'mongodb';
+import { ObjectId, type Collection, type MongoClient } from 'mongodb';
 import type { Organization, User, Opportunity } from '../internal/entity';
 import type { Ports } from '../internal/ports';
 
@@ -37,12 +37,12 @@ export class RepositoryLayer implements Ports {
 		return info;
 	}
 
-	async loginUser(email: string): Promise<User | null> {
-		return await this.users!.findOne({ email });
+	async loginUser(name: string): Promise<User | null> {
+		return await this.users!.findOne({ name: name });
 	}
 
 	async infoMeUser(id: string): Promise<User | null> {
-		return this.users!.findOne({ _id: id });
+		return this.users!.findOne({ _id: new ObjectId(id) });
 	}
 
 	async meApplys(userId: string): Promise<Opportunity[]> {
@@ -57,14 +57,14 @@ export class RepositoryLayer implements Ports {
 	}
 
 	async getInfoOrganization(id: string): Promise<Organization | null> {
-		return await this.organizations!.findOne({ _id: id });
+		return await this.organizations!.findOne({ _id: new ObjectId(id) });
 	}
 
 	async editOrganization(
 		id: string,
 		info: Partial<Organization>
 	): Promise<void> {
-		await this.organizations?.updateOne({ _id: id }, { $set: info });
+		await this.organizations?.updateOne({ _id: new ObjectId(id) }, { $set: info });
 	}
 
 	// Opportunity ---------------------------------------------------------------------------------------------
@@ -79,7 +79,7 @@ export class RepositoryLayer implements Ports {
 	}
 
 	async matchmakingOpportunities(userId: string): Promise<Opportunity[]> {
-		const user = await this.users!.findOne({ _id: userId });
+		const user = await this.users!.findOne({ _id: new ObjectId(userId) });
 		if (!user) return [];
 
 		return this.opportunities!.find({
@@ -89,8 +89,8 @@ export class RepositoryLayer implements Ports {
 
 	async applyOpportunity(opportunityId: string, userId: string): Promise<void> {
 		await this.opportunities?.updateOne(
-			{ _id: opportunityId },
-			{ $set: { fkUser: userId } }
+			{ _id: new ObjectId(opportunityId) },
+			{ $set: { fkUser: new ObjectId(userId) } }
 		);
 	}
 }

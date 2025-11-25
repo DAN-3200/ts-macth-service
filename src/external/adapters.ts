@@ -11,7 +11,7 @@ export async function checkPassword(
 	pivot: string,
 	passwordhash: string
 ): Promise<boolean> {
-	return bcrypt.compare(pivot, passwordhash);
+	return await bcrypt.compare(pivot, passwordhash);
 }
 
 declare module 'express-session' {

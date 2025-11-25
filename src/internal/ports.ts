@@ -3,7 +3,7 @@ import type { Opportunity, Organization, User } from './entity';
 export interface Ports {
 	// User ---------------------------------------------------------------------------------------------
 	registerUser(info: User): Promise<User>;
-	loginUser(username: string): Promise<User | null>;
+	loginUser(name: string): Promise<User | null>;
 	infoMeUser(id: string): Promise<User | null>;
 	meApplys(userId: string): Promise<Opportunity[]>;
 

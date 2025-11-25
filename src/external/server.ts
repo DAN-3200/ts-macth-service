@@ -13,7 +13,7 @@ export default async function runServer() {
 
 	server.use(
 		session({
-			secret: 'minha_chave_secreta', // troque por algo seguro
+			secret: 'CHAVE-CHAVOSAAAAA',
 			resave: false,
 			saveUninitialized: false,
 			cookie: {

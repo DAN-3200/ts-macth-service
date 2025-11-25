@@ -7,11 +7,13 @@ export class UsecaseLayer {
 
 	// User ---------------------------------------------------------------------------------------------
 
-	async login(username: string, password: string): Promise<User | null> {
-		const user = await this.repo.loginUser(username);
+	async login(name: string, password: string): Promise<User | null> {
+		const user = await this.repo.loginUser(name);
 
-		if (await checkPassword(password, user!.password))
+		if (!user) throw new Error('Usuário não encontrado');
+		if (!(await checkPassword(password, user.password))) {
 			throw new Error('Senha não é igual');
+		}
 
 		return user;
 	}
@@ -29,7 +31,7 @@ export class UsecaseLayer {
 	}
 
 	async infoMeUser(id: string): Promise<User | null> {
-		return this.repo.infoMeUser(id);
+		return await this.repo.infoMeUser(id);
 	}
 
 	async meApplys(userId: string): Promise<Opportunity[]> {
@@ -57,6 +59,7 @@ export class UsecaseLayer {
 	}
 
 	// Opportunity ---------------------------------------------------------------------------------------------
+   
 	async saveOpportunities(info: Opportunity): Promise<Opportunity> {
 		return await this.repo.saveOpportunities({
 			...info,

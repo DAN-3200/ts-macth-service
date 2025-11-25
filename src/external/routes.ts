@@ -9,18 +9,18 @@ export async function routesManager(server: Express.Application) {
 	const service = new UsecaseLayer(repository);
 	const handle = new ControllerLayer(service);
 
-	server.post('/api/auth/register');
-	server.post('/api/auth/login');
-	server.get('/api/users/me');
+	server.post('/api/auth/register', handle.register);
+	server.post('/api/auth/login', handle.login);
+	server.get('/api/users/me', handle.infoMeUser);
 
-	server.post('/api/organizations');
-	server.get('/api/organization/:id');
-	server.put('/api/organization/:id');
+	server.post('/api/organizations', handle.saveOrganizations);
+	server.get('/api/organization/:id', handle.getInfoOrganization);
+	server.put('/api/organization/:id', handle.editOrganization);
 
-	server.post('/api/opportunities');
-	server.get('/api/opportunities');
-	server.get('/api/opportunities/match');
-	server.post('/api/opportunities/:id/apply');
+	server.post('/api/opportunities', handle.saveOpportunities);
+	server.get('/api/opportunities', handle.getOpportunityList);
+	server.get('/api/opportunities/match', handle.matchmakingOpportunities);
+	server.post('/api/opportunities/:id/apply', handle.applyOpportunity);
 
-   server.post('/api/users/my-applications')
+	server.get('/api/users/my-applications', handle.meApplys);
 }
