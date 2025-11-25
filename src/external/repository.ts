@@ -46,7 +46,7 @@ export class RepositoryLayer implements Ports {
 	}
 
 	async meApplys(userId: string): Promise<Opportunity[]> {
-		return await this.opportunities!.find({ fkUser: userId }).toArray();
+		return await this.opportunities!.find({ fkUser: new ObjectId(userId) }).toArray();
 	}
 
 	// Organization ---------------------------------------------------------------------------------------------
