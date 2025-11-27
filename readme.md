@@ -20,7 +20,7 @@ O projeto foi desenvolvido como parte do processo avaliativo da disciplina de Pr
 #### Clonando o repositório
 
 ```bash
-git clone https://github.com/DAN-3200/ts-macth-service.git
+git clone https://github.com/DAN-3200/ts-match-service.git
 ```
 
 #### Configurando e iniciando o MongoDB com Docker
