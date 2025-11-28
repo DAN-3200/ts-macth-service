@@ -2,7 +2,8 @@
 	"name": "ts-match-service",
 	"module": "src/main.ts",
 	"scripts": {
-		"dev": "bun --watch src/main.ts"
+		"dev": "bun --watch src/main.ts",
+		"start": "bun run src/main.js"
 	},
 	"devDependencies": {
 		"@types/bcryptjs": "^3.0.0",
